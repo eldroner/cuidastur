@@ -1,0 +1,11 @@
+<div class="cookie-banner" *ngIf="isVisible()" @fadeInBottom>
+  <div class="container cookie-content">
+    <div class="cookie-text">
+      <i class="bi bi-info-circle-fill"></i>
+      <p>Utilizamos cookies para mejorar tu experiencia de navegación. Al continuar navegando, consideramos que aceptas nuestra <a href="#" (click)="onOpenInfo($event)">Política de Cookies</a>.</p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary btn-sm" (click)="onAccept()">Aceptar</button>
+    </div>
+  </div>
+</div>

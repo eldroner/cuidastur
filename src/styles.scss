@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #2c5282;        /* Azul confiable */
+  --primary-light: #ebf8ff;
+  --secondary: #48bb78;      /* Verde calma (también para WhatsApp) */
+  --text-dark: #2d3748;
+  --text-light: #718096;
+  --white: #ffffff;
+  --bg-light: #f7fafc;
+  --accent: #ed8936;         /* Naranja suave para CTAs */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  background-color: var(--white);
+  overflow-x: hidden; /* Evitar scroll horizontal accidental */
+}
+
+/* Asegurar que los componentes de la SPA ocupen todo el ancho */
+app-header, app-hero, app-about, app-services, app-simulator, app-contact, app-footer {
+  display: block;
+  width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: #2b6cb0;
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+section {
+  padding: 3rem 0;
+}
+
+.text-center { text-align: center; }
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded-4 {
+  border-radius: 2rem;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.shadow-lg {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.d-none { display: none; }
+
+@media (min-width: 576px) {
+  .d-sm-flex { display: flex; }
+}
+
+@media (min-width: 992px) {
+  .d-lg-block { display: block; }
+}

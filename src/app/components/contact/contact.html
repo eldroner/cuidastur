@@ -1,0 +1,102 @@
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2 class="section-title">¿Hablamos?</h2>
+        <p class="response-time"><i class="bi bi-clock-history"></i> Respondemos en menos de 24h</p>
+        
+        <div class="contact-methods">
+          <a href="tel:722844555" class="method-item-link">
+            <div class="method-item">
+              <i class="bi bi-telephone-fill"></i>
+              <div>
+                <h4>Llámanos</h4>
+                <p>722 84 45 55</p>
+              </div>
+            </div>
+          </a>
+          <a href="https://wa.me/34633155386" target="_blank" class="method-item-link">
+            <div class="method-item">
+              <i class="bi bi-whatsapp"></i>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>633 15 53 86</p>
+              </div>
+            </div>
+          </a>
+          <div class="method-item">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <h4>Email</h4>
+              <p>info@cuidastur.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-image d-none d-lg-block">
+          <img src="images/cuidastur_img_2.png" alt="Cuidastur Asturias" class="img-fluid">
+        </div>
+      </div>
+
+      <div class="contact-form-container">
+        <div class="form-header">
+          <h3>Envíanos un mensaje</h3>
+          <p>Estamos aquí para escucharte y ver cómo podemos ayudarte a mejorar el día a día de tus familiares.</p>
+        </div>
+
+        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div *ngIf="submitSuccess" class="alert-success-msg">
+            <i class="bi bi-check-circle-fill"></i>
+            <p>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo lo antes posible.</p>
+          </div>
+
+          <div class="form-group">
+            <label>Nombre completo *</label>
+            <input type="text" name="name" [(ngModel)]="formData.name" placeholder="Tu nombre" required>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>Teléfono *</label>
+              <input type="tel" name="phone" [(ngModel)]="formData.phone" placeholder="Tu teléfono" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" [(ngModel)]="formData.email" placeholder="Tu email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>¿En qué podemos ayudarte?</label>
+            <textarea name="message" [(ngModel)]="formData.message" rows="4" placeholder="Cuéntanos brevemente tu situación"></textarea>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="privacy" name="privacy" [(ngModel)]="formData.privacy" required>
+            <label for="privacy">Acepto la política de privacidad *</label>
+          </div>
+          
+          <button type="submit" 
+                  class="btn btn-primary w-100 mt-3" 
+                  [disabled]="!isFormValid() || isSubmitting">
+            <span *ngIf="!isSubmitting">Enviar mensaje</span>
+            <span *ngIf="isSubmitting"><i class="bi bi-hourglass-split"></i> Enviando...</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nuevo banner de zonas antes del footer -->
+<div class="zones-banner">
+  <div class="container">
+    <h4>Áreas de Servicio en Asturias</h4>
+    <div class="tags">
+      <span class="tag">Avilés y Comarca</span>
+      <span class="tag">Castrillón</span>
+      <span class="tag">Corvera</span>
+      <span class="tag">Gijón</span>
+      <span class="tag">Oviedo</span>
+      <span class="tag">Siero</span>
+      <span class="tag">Lugones</span>
+    </div>
+  </div>
+</div>

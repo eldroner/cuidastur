@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-hero></app-hero>
+<app-about></app-about>
+<app-services></app-services>
+<app-simulator></app-simulator>
+<app-contact></app-contact>
+<app-footer (openLegal)="openLegal($event)"></app-footer>
+
+<app-cookie-banner (openInfo)="handleCookieInfo()"></app-cookie-banner>
+
+<app-legal-modal 
+  *ngIf="activeLegalType()" 
+  [type]="activeLegalType()" 
+  (close)="closeLegal()">
+</app-legal-modal>
+
+<router-outlet></router-outlet>

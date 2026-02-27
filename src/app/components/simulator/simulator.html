@@ -1,0 +1,54 @@
+<section id="simulator" class="simulator">
+  <div class="container">
+    <div class="simulator-card">
+      <div class="simulator-info">
+        <h2 class="section-title">Calcula tu presupuesto</h2>
+        <p>Nuestro sistema de tarifas es sencillo y transparente. Sin cuotas de alta ni permanencia.</p>
+        
+        <div class="pricing-badge">
+          <span class="price">15€</span>
+          <span class="unit">/ hora</span>
+        </div>
+
+        <ul class="pricing-features">
+          <li><i class="bi bi-check2"></i> Mínimo de 2 horas por servicio</li>
+          <li><i class="bi bi-check2"></i> Desplazamiento incluido</li>
+          <li><i class="bi bi-check2"></i> Sin compromiso de permanencia</li>
+          <li><i class="bi bi-check2"></i> Facturación mensual clara</li>
+        </ul>
+      </div>
+
+      <div class="simulator-action">
+        <h3>¿Cuántas horas necesitas?</h3>
+        
+        <div class="slider-container">
+          <!-- Tooltip que desaparece tras 5 segundos o al interactuar -->
+          <div *ngIf="showTooltip" class="slider-tooltip">
+            Arrastra para calcular el precio del servicio
+          </div>
+          
+          <input type="range" 
+                 [min]="minHours" 
+                 max="40" 
+                 [value]="hours" 
+                 (input)="updateHours($event)" 
+                 class="hours-slider"
+                 [class.pulse-thumb]="isPulsing">
+          <div class="hours-display">
+            <span class="number">{{ hours }}</span>
+            <span class="label">horas de acompañamiento</span>
+          </div>
+        </div>
+
+        <div class="total-box">
+          <span class="total-label">Presupuesto estimado:</span>
+          <span class="total-amount">{{ getTotal() }}€</span>
+          <span class="total-period">por servicio</span>
+        </div>
+
+        <a href="#contact" class="btn btn-primary w-100">Solicitar reserva</a>
+        <p class="small-info mt-3">Para servicios recurrentes o semanales, consulta nuestros descuentos especiales.</p>
+      </div>
+    </div>
+  </div>
+</section>
