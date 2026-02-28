@@ -127,5 +127,25 @@
 @media (max-width: 576px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-links, .footer-legal, .footer-contact {
+    h4 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-item {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .footer-brand {
+    .logo-text {
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1.2rem;
+    }
   }
 }

@@ -44,10 +44,19 @@
           <p>Estamos aquí para escucharte y ver cómo podemos ayudarte a mejorar el día a día de tus familiares.</p>
         </div>
 
-        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
-          <div *ngIf="submitSuccess" class="alert-success-msg">
+        <!-- Toast de éxito centrado -->
+        <div *ngIf="submitSuccess" class="success-toast">
+          <div class="toast-content">
             <i class="bi bi-check-circle-fill"></i>
-            <p>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo lo antes posible.</p>
+            <p>¡Mensaje enviado con éxito!</p>
+            <span>Nos pondremos en contacto contigo lo antes posible.</span>
+          </div>
+        </div>
+
+        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div *ngIf="submitError" class="alert-error-msg">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <p>Error al enviar. Por favor, inténtalo de nuevo.</p>
           </div>
 
           <div class="form-group">

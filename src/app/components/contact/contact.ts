@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -10,6 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './contact.scss',
 })
 export class Contact {
+  private http = inject(HttpClient);
+  private cdr = inject(ChangeDetectorRef);
+
   formData = {
     name: '',
     phone: '',
@@ -25,22 +29,38 @@ export class Contact {
   onSubmit() {
     if (this.isFormValid()) {
       this.isSubmitting = true;
-      console.log('Datos del formulario:', this.formData);
+      this.submitError = false;
+      this.submitSuccess = false;
       
-      // Aquí conectaremos con el servicio del backend más adelante
-      // Simulamos un envío exitoso
-      setTimeout(() => {
-        this.isSubmitting = false;
-        this.submitSuccess = true;
-        this.resetForm();
-      }, 1500);
+      this.http.post('https://cuidastur.com/contacto-directo', this.formData)
+        .subscribe({
+          next: () => {
+            console.log('Envío exitoso detectado');
+            this.isSubmitting = false;
+            this.submitSuccess = true;
+            this.resetForm();
+            this.cdr.detectChanges(); // Forzar actualización visual
+            
+            // Ocultar el mensaje de éxito automáticamente después de 5 segundos
+            setTimeout(() => {
+              this.submitSuccess = false;
+              this.cdr.detectChanges();
+            }, 5000);
+          },
+          error: (err) => {
+            console.error('Error al enviar el formulario:', err);
+            this.isSubmitting = false;
+            this.submitError = true;
+            this.cdr.detectChanges();
+          }
+        });
     }
   }
 
   isFormValid(): boolean {
     return (
-      this.formData.name.length > 2 &&
-      this.formData.phone.length >= 9 &&
+      this.formData.name.trim().length > 2 &&
+      this.formData.phone.trim().length >= 9 &&
       this.formData.privacy === true
     );
   }

@@ -45,6 +45,17 @@ p {
 .btn-outline {
   border: 2px solid var(--primary);
   color: var(--primary);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
 }
 
 .hero-trust {
@@ -110,15 +121,37 @@ p {
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.1rem; /* Reducido para evitar desbordamiento en móviles */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   p {
     margin: 0 auto 2.5rem auto;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem; /* Ajuste extra para móviles muy pequeños */
+    }
   }
 
   .hero-cta {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  .btn-lg {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
 
   .hero-trust {
