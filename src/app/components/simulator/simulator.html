@@ -12,19 +12,67 @@
 
         <ul class="pricing-features">
           <li><i class="bi bi-check2"></i> Mínimo de 2 horas por servicio</li>
-          <li><i class="bi bi-check2"></i> Desplazamiento incluido</li>
+          <li>
+            <i class="bi bi-check2"></i> Desplazamiento incluido 
+            <span class="info-tooltip-container">
+              <i class="bi bi-question-circle-fill info-icon"></i>
+              <div class="custom-popover">
+                <div class="popover-header">Información de desplazamiento</div>
+                <p>Desplazamiento incluido en los 10 km a la redonda de Avilés. Introduce la dirección en este formulario para calcular precio aproximado para otras zonas.</p>
+              </div>
+            </span>
+          </li>
           <li><i class="bi bi-check2"></i> Sin compromiso de permanencia</li>
           <li><i class="bi bi-check2"></i> Facturación mensual clara</li>
         </ul>
       </div>
 
       <div class="simulator-action">
-        <h3>¿Cuántas horas necesitas?</h3>
+        <div class="address-section mb-4" *ngIf="isMapsApiLoaded">
+          <h3>¿Dónde necesitas el servicio?</h3>
+          <div class="address-input-wrapper">
+            <i class="bi bi-geo-alt input-icon"></i>
+            <input type="text" 
+                   [value]="address" 
+                   (input)="onAddressInput($event)" 
+                   placeholder="Localidad o dirección"
+                   class="address-input">
+            
+            <ul class="predictions-list" *ngIf="predictions.length > 0">
+              <li *ngFor="let p of predictions" (click)="selectPrediction(p)">
+                <i class="bi bi-geo-alt"></i> {{ p.description }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="distance-badge" *ngIf="distanceKm > 0">
+            <span *ngIf="distanceKm <= 10" class="badge-free">
+              <i class="bi bi-check-circle-fill"></i> A {{ distanceKm }}km (Incluido)
+            </span>
+            <span *ngIf="distanceKm > 10" class="badge-extra">
+              <i class="bi bi-plus-circle-fill"></i> A {{ distanceKm }}km (+{{ extraDistanceCost | number:'1.2-2' }}€/semana)
+            </span>
+          </div>
+        </div>
+
+        <div class="days-section mb-4">
+          <h3>¿Cuántos días a la semana?</h3>
+          <div class="days-selector">
+            <button *ngFor="let day of [1,2,3,4,5,6,7]" 
+                    (click)="updateDays(day)" 
+                    [class.active]="daysPerWeek === day"
+                    class="day-btn">
+              {{ day }}
+            </button>
+          </div>
+        </div>
+
+        <h3>¿Cuántas horas totales a la semana?</h3>
         
         <div class="slider-container">
           <!-- Tooltip que desaparece tras 5 segundos o al interactuar -->
           <div *ngIf="showTooltip" class="slider-tooltip">
-            Arrastra para calcular el precio del servicio
+            Arrastra para calcular el precio semanal
           </div>
           
           <input type="range" 
@@ -36,14 +84,14 @@
                  [class.pulse-thumb]="isPulsing">
           <div class="hours-display">
             <span class="number">{{ hours }}</span>
-            <span class="label">horas de acompañamiento</span>
+            <span class="label">horas semanales</span>
           </div>
         </div>
 
         <div class="total-box">
-          <span class="total-label">Presupuesto estimado:</span>
-          <span class="total-amount">{{ getTotal() }}€</span>
-          <span class="total-period">por servicio</span>
+          <span class="total-label">Presupuesto semanal estimado:</span>
+          <span class="total-amount">{{ getTotal() | number:'1.2-2' }}€</span>
+          <span class="total-period">IVA no incluido</span>
         </div>
 
         <a href="#contact" class="btn btn-primary w-100">Solicitar reserva</a>
